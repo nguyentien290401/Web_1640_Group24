@@ -1,0 +1,69 @@
+﻿@model IEnumerable<Web_1640_Group24.Models.Idea>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Category.CategoryName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Department.DepartmentName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.User.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IdeaName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IdeaDateAndTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ViewsCount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.File)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Category.CategoryName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Department.DepartmentName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.User.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IdeaName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IdeaDateAndTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ViewsCount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.File)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IdeaID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IdeaID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IdeaID })
+        </td>
+    </tr>
+}
+
+</table>
