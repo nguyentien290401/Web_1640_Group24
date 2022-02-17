@@ -15,10 +15,18 @@ namespace Web_1640_Group24.Controllers
         private IdeasDbContext db = new IdeasDbContext();
 
         // GET: Ideas
-        public ActionResult Index()
+        public ActionResult Index(int PageNo = 1)
         {
-            var ideas = db.Ideas.Include(i => i.Category).Include(i => i.Department).Include(i => i.User);
-            return View(ideas.ToList());
+            List<Idea> ideas = db.Ideas.ToList();
+
+            int NoOfRecordsPerPage = 5;
+            int NoOfPages = Convert.ToInt32(Math.Ceiling(Convert.ToDouble(ideas.Count) / Convert.ToDouble(NoOfRecordsPerPage)));
+            int NoOfRecordsToSkip = (PageNo - 1) * NoOfRecordsPerPage;
+            ViewBag.PageNo = PageNo;
+            ViewBag.NoOfPages = NoOfPages;
+            ideas = ideas.Skip(NoOfRecordsToSkip).Take(NoOfRecordsPerPage).ToList();
+
+            return View(ideas);
         }
 
         // GET: Ideas/Details/5

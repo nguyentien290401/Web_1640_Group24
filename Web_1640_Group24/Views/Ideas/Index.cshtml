@@ -35,35 +35,77 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Category.CategoryName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Department.DepartmentName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.User.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IdeaName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IdeaDateAndTime)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ViewsCount)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.File)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.IdeaID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.IdeaID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.IdeaID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category.CategoryName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Department.DepartmentName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdeaName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdeaDateAndTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ViewsCount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.File)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.IdeaID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.IdeaID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.IdeaID })
+            </td>
+        </tr>
+    }
+
+<tr>
+    <td colspan="9">
+        @{
+            int PrevPageNo = ViewBag.PageNo - 1;
+            if (PrevPageNo <= 0)
+            {
+                PrevPageNo = 1;
+            }
+
+            int NextPageNo = ViewBag.PageNo + 1;
+            if (NextPageNo > ViewBag.NoOfPages)
+            {
+                NextPageNo = ViewBag.NoOfPages;
+            }
+        }
+        <ul class="pagination justify-content-center">
+            <li class="page-item">
+                <a class="page-link" href="/ideas/index?PageNo=@PrevPageNo">Prev</a>
+            </li>
+            @for (int i = 0; i < ViewBag.NoOfPages; i++)
+            {
+                if ((i + 1) == ViewBag.PageNo)
+                {
+                    <li class="page-item active">
+                        <a class="page-link" href="/ideas/index?PageNo=@(i + 1)">@( i + 1)</a>
+                    </li>
+                }
+                else
+                {
+                    <li class="page-item">
+                        <a class="page-link" href="/ideas/index?PageNo=@(i + 1)">@( i + 1)</a>
+                    </li>
+                }
+            }
+            <li class="page-item">
+                <a class="page-link" href="/ideas/index?PageNo=@NextPageNo">Next</a>
+            </li>
+        </ul>
+    </td>
+</tr>
 
 </table>
