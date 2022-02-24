@@ -12,8 +12,13 @@ namespace Web_1640_Group24.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int UserID { get; set; }
+        [Required(ErrorMessage = "Name is required.")]
         public string Name { get; set; }
+        [Required(ErrorMessage = "Email is required.")]
         public string Email { get; set; }
+        [DataType(DataType.Password)]
+
+        [Display(Name = "Password")]
         public string PasswordHash { get; set; }
         public string Phone { get; set; }
         public bool IsAdmin { get; set; }

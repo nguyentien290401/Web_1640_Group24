@@ -14,8 +14,14 @@ namespace Web_1640_Group24.Models
         public int IdeaID { get; set; }
         public string IdeaName { get; set; }
         public DateTime IdeaDateAndTime { get; set; }
+
+        [Display(Name = "Department")]
         public int DepartmentID { get; set; }
+
+        [Display(Name = "Category")]
         public int CategoryID { get; set; }
+
+        [Display(Name = "UserName")]
         public int UserID { get; set; }
         public int ViewsCount { get; set; }
         public string File { get; set; }
