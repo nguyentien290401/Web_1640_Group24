@@ -10,8 +10,11 @@
     @Styles.Render("~/Styles/bootstrap")
     @Styles.Render("~/Styles/site")
     @Scripts.Render("~/Scripts/bootstrap")
+
 </head>
 <body>
+
+
     <div class="container-fluid">
         <nav class="navbar navbar-expand-sm text-light navbar-light">
             <a class="navbar-brand" href="/home/index">Ideas</a>
@@ -22,6 +25,7 @@
 
             <div class="collapse navbar-collapse" id="collapsibleNavBar">
                 <ul class="navbar-nav">
+
                     <li class="nav-item active">
                         <a class="nav-link" href="/home/index">Home</a>
                     </li>
@@ -34,6 +38,25 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/ideas/index">Ideas</a>
                     </li>
+                    @if (Session["Name"] == null)
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" href="/account/login">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/account/register">Register</a>
+                        </li>
+                    }
+                    @if (Session["Name"] != null)
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" href="/account/logout">Logout</a>
+                        </li>
+
+                    }
+
+
+
                 </ul>
             </div>
         </nav>
