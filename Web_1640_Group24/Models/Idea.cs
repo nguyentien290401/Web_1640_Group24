@@ -24,10 +24,9 @@ namespace Web_1640_Group24.Models
         [Display(Name = "UserName")]
         public int UserID { get; set; }
         public int ViewsCount { get; set; }
-        public string File { get; set; }
 
-        [ForeignKey("DepartmentID")]
-        public virtual Department Department { get; set; }
+        [ForeignKey("FileID")]
+        public virtual File File { get; set; }
 
         [ForeignKey("CategoryID")]
         public virtual Category Category { get; set; }

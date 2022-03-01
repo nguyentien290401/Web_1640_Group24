@@ -22,5 +22,12 @@ namespace Web_1640_Group24.Models
         public string PasswordHash { get; set; }
         public string Phone { get; set; }
         public bool IsAdmin { get; set; }
+        public int RoleID { get; set; }
+
+        [ForeignKey("RoleID")]
+        public virtual Role Role { get; set; }
+
+        [ForeignKey("DepartmentID")]  
+        public virtual Department Department { get; set; }
     }
 }
